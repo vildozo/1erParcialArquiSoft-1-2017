@@ -54,13 +54,18 @@ public class Customer {
 				frequentRenterPoints++;
 
 			// show figures for this rental
-			result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(thisAmount) + "\n";
+			result = returnMessageTabulatedOfMovieTitleAndAmount(result, thisAmount, each);
 			totalAmount += thisAmount;
 		}
 
 		
 		result = returnMessageAmountOwedAndFrecuentRenterPoints(result);
 
+		return result;
+	}
+
+	private String returnMessageTabulatedOfMovieTitleAndAmount(String result, double thisAmount, Rental each) {
+		result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(thisAmount) + "\n";
 		return result;
 	}
 
