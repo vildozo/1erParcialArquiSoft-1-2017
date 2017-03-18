@@ -19,23 +19,23 @@ public class Rental {
 		return _movie;
 	}
 
-	double calculateAmountByMovieType(double thisAmount) {
-		switch (getMovie().getPriceCode()) {
-		case Movie.REGULAR:
-			thisAmount += 2;
+	double calculateAmountByMovieType() {	
+		double movieTotal=0;
+		if ((getMovie().getPriceCode()) == Movie.REGULAR) {
+			movieTotal += 2;
 			if (getDaysRented() > 2)
-				thisAmount += (getDaysRented() - 2) * 1.5;
-			break;
-		case Movie.NEW_RELEASE:
-			thisAmount += getDaysRented() * 3;
-			break;
-		case Movie.CHILDRENS:
-			thisAmount += 1.5;
-			if (getDaysRented() > 3)
-				thisAmount += (getDaysRented() - 3) * 1.5;
-			break;
+				movieTotal += (getDaysRented() - 2) * 1.5;
 		}
-		return thisAmount;
+		if ((getMovie().getPriceCode()) == Movie.NEW_RELEASE) {
+			movieTotal += getDaysRented() * 3;
+		}
+		if ((getMovie().getPriceCode()) == Movie.CHILDRENS) {
+			movieTotal += 1.5;
+			if (getDaysRented() > 3)
+				movieTotal += (getDaysRented() - 3) * 1.5;
+		}
+		
+		return movieTotal;
 	}
 
 

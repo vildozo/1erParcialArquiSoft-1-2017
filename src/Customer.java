@@ -31,7 +31,7 @@ public class Customer {
 			Rental each = (Rental) rentals.nextElement();
 
 			
-			thisAmount = each.calculateAmountByMovieType(thisAmount);
+			thisAmount = each.calculateAmountByMovieType();
 
 			
 			incrementPointsToFrecuentRenterPoints();
