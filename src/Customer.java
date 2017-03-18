@@ -24,7 +24,7 @@ public class Customer {
 		totalAmount = 0;
 		frequentRenterPoints = 0;
 		Enumeration rentals = this.rentals.elements();
-		String result = "Rental Record for " + getName() + "\n";
+		String message = "Rental Record for " + getName() + "\n";
 
 		while (rentals.hasMoreElements()) {
 			double thisAmount = 0;
@@ -47,21 +47,24 @@ public class Customer {
 				break;
 			}
 
-			// add frequent renter points
+			
 			incrementPointsToFrecuentRenterPoints();
-			// add bonus for a two day new release rental
-			if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDaysRented() > 1)
-				incrementPointsToFrecuentRenterPoints();
+			hasBonusFor2DaysNewReleaseRental(each);
 
-			// show figures for this rental
-			result = returnMessageTabulatedOfMovieTitleAndAmount(result, thisAmount, each);
+			
+			message = returnMessageTabulatedOfMovieTitleAndAmount(message, thisAmount, each);
 			totalAmount += thisAmount;
 		}
 
 		
-		result = returnMessageAmountOwedAndFrecuentRenterPoints(result);
+		message = returnMessageAmountOwedAndFrecuentRenterPoints(message);
 
-		return result;
+		return message;
+	}
+
+	private void hasBonusFor2DaysNewReleaseRental(Rental each) {
+		if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDaysRented() > 1)
+			incrementPointsToFrecuentRenterPoints();
 	}
 
 	private void incrementPointsToFrecuentRenterPoints() {
