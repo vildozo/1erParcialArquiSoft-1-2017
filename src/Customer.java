@@ -58,10 +58,15 @@ public class Customer {
 			totalAmount += thisAmount;
 		}
 
-		// add footer lines
+		
+		result = returnMessageAmountOwedAndFrecuentRenterPoints(result);
+
+		return result;
+	}
+
+	private String returnMessageAmountOwedAndFrecuentRenterPoints(String result) {
 		result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
 		result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
-
 		return result;
 	}
 
