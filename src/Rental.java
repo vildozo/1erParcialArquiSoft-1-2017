@@ -22,17 +22,16 @@ public class Rental {
 	double calculateAmountByMovieType() {	
 		double movieTotal=0;
 		if ((getMovie().getPriceCode()) == Movie.REGULAR) {
-			movieTotal += 2;
-			if (getDaysRented() > 2)
-				movieTotal += (getDaysRented() - 2) * 1.5;
+			RegularMovie regular=new RegularMovie();
+			movieTotal = regular.calculateRegularMovieTotal(movieTotal, this);
 		}
 		if ((getMovie().getPriceCode()) == Movie.NEW_RELEASE) {
-			movieTotal += getDaysRented() * 3;
+			New_Release new_Release = new New_Release();
+			movieTotal = new_Release.calculateNew_ReleaseMovieTotal(movieTotal, this);
 		}
 		if ((getMovie().getPriceCode()) == Movie.CHILDRENS) {
-			movieTotal += 1.5;
-			if (getDaysRented() > 3)
-				movieTotal += (getDaysRented() - 3) * 1.5;
+			Children children = new Children();
+			movieTotal = children.calculateChildrensMovieTotal(movieTotal, this);
 		}
 		
 		return movieTotal;

@@ -29,8 +29,7 @@ public class Customer {
 		while (rentals.hasMoreElements()) {
 			double thisAmount = 0;
 			Rental each = (Rental) rentals.nextElement();
-
-			
+		
 			thisAmount = each.calculateAmountByMovieType();
 
 			
