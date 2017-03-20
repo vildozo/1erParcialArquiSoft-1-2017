@@ -16,7 +16,7 @@ public class CustomerTest {
 	@Test
 	public void testSingleNewReleaseStatementTotals() {
 		customer.addRental(new Rental(new Movie("The Cell", Movie.NEW_RELEASE), 3));
-		customer.generate();
+		customer.generateReportOfMovieRentals();
 		assertEquals(9.0, customer.getTotal(), DELTA);
 		assertEquals(2, customer.getFrequentRenterPoints());
 	}
@@ -25,7 +25,7 @@ public class CustomerTest {
 	public void testDualNewReleaseStatementTotals() {
 		customer.addRental(new Rental(new Movie("The Cell", Movie.NEW_RELEASE), 3));
 		customer.addRental(new Rental(new Movie("The Tigger Movie", Movie.NEW_RELEASE), 3));
-		customer.generate();
+		customer.generateReportOfMovieRentals();
 		assertEquals(18.0, customer.getTotal(), DELTA);
 		assertEquals(4, customer.getFrequentRenterPoints());
 	
@@ -34,7 +34,7 @@ public class CustomerTest {
 	@Test
 	public void testSingleChildrensStatementTotals() {
 		customer.addRental(new Rental(new Movie("The Tiger Movie", Movie.CHILDRENS), 3));
-		customer.generate();
+		customer.generateReportOfMovieRentals();
 		assertEquals(1.5, customer.getTotal(), DELTA);
 		assertEquals(1, customer.getFrequentRenterPoints());
 	}
@@ -45,7 +45,7 @@ public class CustomerTest {
 		customer.addRental(new Rental(new Movie("8 1/2", Movie.REGULAR), 2));
 		customer.addRental(new Rental(new Movie("Eraserhead", Movie.REGULAR), 3));
 		
-		customer.generate();
+		customer.generateReportOfMovieRentals();
 		assertEquals(7.5, customer.getTotal(), DELTA);
 		assertEquals(3, customer.getFrequentRenterPoints());
 	}
@@ -63,7 +63,7 @@ public class CustomerTest {
 				"\tEraserhead\t3.5\n" +
 				"Amount owed is 7.5\n" +
 				"You earned 3 frequent renter points", 
-			customer.generate());
+			customer.generateReportOfMovieRentals());
 	}
 	
 }

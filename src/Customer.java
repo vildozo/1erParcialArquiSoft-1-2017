@@ -5,7 +5,7 @@ public class Customer {
 
 	private String customerName;
 	private Vector rentals = new Vector();
-	private double totalAmount;
+	private double totalAmount=0;
 	private int frequentRenterPoints;
 
 	public Customer(String customerName) {
@@ -20,31 +20,20 @@ public class Customer {
 		return customerName;
 	}
 
-	public String generate() {
-		totalAmount = 0;
+	public String generateReportOfMovieRentals() {
 		frequentRenterPoints = 0;
 		String message = "Rental Record for " + getName() + "\n";
 		Enumeration rentals = this.rentals.elements();
-		
 		while (rentals.hasMoreElements()) {
 			double thisAmount = 0;
 			Rental each = (Rental) rentals.nextElement();
-		
 			thisAmount = each.calculateAmountByMovieType();
-
-			
 			incrementPointsToFrecuentRenterPoints();
 			hasBonusFor2DaysNewReleaseRental(each);
-
-			
 			message = returnMessageTabulatedOfMovieTitleAndAmount(message, thisAmount, each);
 			totalAmount += thisAmount;
 		}
-
-		
-		message = returnMessageAmountOwedAndFrecuentRenterPoints(message);
-
-		return message;
+		return returnMessageAmountOwedAndFrecuentRenterPoints(message);
 	}
 
 	private void hasBonusFor2DaysNewReleaseRental(Rental each) {
