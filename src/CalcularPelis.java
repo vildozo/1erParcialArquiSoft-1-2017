@@ -1,5 +1,5 @@
 
 public interface CalcularPelis {
-	public float calculateTotal(double movieTotal, Rental rental);
+	public double calculateTotal(double movieTotal, Rental rental);
 
 }

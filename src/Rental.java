@@ -21,20 +21,23 @@ public class Rental {
 
 	double calculateAmountByMovieType() {	
 		double movieTotal=0;
+		CalcularPelis movie = null;
+		movie = createMovieType(movie);
+		movieTotal = movie.calculateTotal(movieTotal, this);
+		return movieTotal;
+	}
+
+	private CalcularPelis createMovieType(CalcularPelis movie) {
 		if ((getMovie().getPriceCode()) == Movie.REGULAR) {
-			RegularMovie regular=new RegularMovie();
-			movieTotal = regular.calculateRegularMovieTotal(movieTotal, this);
+			movie=new RegularMovie();
 		}
 		if ((getMovie().getPriceCode()) == Movie.NEW_RELEASE) {
-			New_Release new_Release = new New_Release();
-			movieTotal = new_Release.calculateNew_ReleaseMovieTotal(movieTotal, this);
+			movie = new New_Release();
 		}
 		if ((getMovie().getPriceCode()) == Movie.CHILDRENS) {
-			Children children = new Children();
-			movieTotal = children.calculateChildrensMovieTotal(movieTotal, this);
+			movie = new Children();
 		}
-		
-		return movieTotal;
+		return movie;
 	}
 
 
